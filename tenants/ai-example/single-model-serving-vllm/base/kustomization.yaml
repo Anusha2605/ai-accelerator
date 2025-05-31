@@ -7,5 +7,5 @@ helmCharts:
 - name: vllm-kserve
   releaseName: granite
   version: 0.3.7
-  repo: https://redhat-ai-services.github.io/helm-charts/
+  repo: https://Anusha2605.github.io/helm-charts/
   valuesFile: values.yaml

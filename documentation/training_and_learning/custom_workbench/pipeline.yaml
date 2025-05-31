@@ -9,7 +9,7 @@ spec:
     - name: git-clone
       params:
         - name: URL
-          value: "https://github.com/redhat-ai-services/ai-accelerator"
+          value: "https://github.com/Anusha2605/ai-accelerator"
         - name: REVISION
           value: ""
         - name: REFSPEC
