@@ -4,3 +4,11 @@ kind: Kustomization
 resources:
   - ../../base
   - ../../../clusters/overlays/rhoai-stable-2.19-aws-gpu
+
+secretGenerator:
+- name: git-secret-mlops
+  envs:
+    - .env.mlops
+  options:
+    labels:
+      argocd.argoproj.io/secret-type: repository
