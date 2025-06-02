@@ -10,7 +10,7 @@ spec:
   generators:
   - git:
       repoURL: 'https://github.com/Anusha2605/ai-accelerator.git'  # Update me on fork
-      revision: main
+      revision: dev
       directories:
       - path: tenants/*/*/overlays/patch-me-see-overlay
       - path: tenants/*/*/overlays/common
