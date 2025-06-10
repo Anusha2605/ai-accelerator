@@ -6,6 +6,7 @@ items:
     annotations:
       template.openshift.io/expose-uri: mysql://{.spec.clusterIP}:{.spec.ports[?(.name==\mysql\)].port}
     name: model-registry-db
+    namespace: registry-toolings
   spec:
     ports:
     - name: mysql
@@ -22,6 +23,7 @@ items:
   kind: PersistentVolumeClaim
   metadata:
     name: model-registry-db
+    namespace: registry-toolings
   spec:
     accessModes:
     - ReadWriteOnce
@@ -117,6 +119,7 @@ items:
       template.openshift.io/expose-password: '{.data[''database-password'']}'
       template.openshift.io/expose-username: '{.data[''database-user'']}'
     name: model-registry-db
+    namespace: registry-toolings
   stringData:
     database-name: "model_registry"
     database-password: "RedHat2025" # notsecret
