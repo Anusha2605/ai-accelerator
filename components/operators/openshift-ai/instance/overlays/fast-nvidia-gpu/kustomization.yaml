@@ -20,3 +20,4 @@ components:
   - ../../components/rhoai-auth
   - ../../components/components-modelregistry
   - ../../components/components-modelregistry-config
+  - ../../components/enable-model-catalog
