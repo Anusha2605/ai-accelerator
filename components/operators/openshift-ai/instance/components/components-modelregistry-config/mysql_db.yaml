@@ -124,9 +124,6 @@ items:
     database-name: "model_registry"
     database-password: "RedHat2025" # notsecret
     database-user: "mlmduser" # notsecret
-kind: List
-metadata: {}
-
 - apiVersion: v1
   kind: Secret
   metadata:
