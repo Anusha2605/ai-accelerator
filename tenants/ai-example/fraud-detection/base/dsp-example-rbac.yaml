@@ -1,0 +1,24 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: pipelines-fd-access
+subjects:
+  - kind: ServiceAccount
+    name: pipelines
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: fd-access
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: fd-access
+rules:
+  - verbs:
+      - get
+    apiGroups:
+      - ''
+      - route.openshift.io
+    resources:
+      - routes
