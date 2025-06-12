@@ -28,4 +28,5 @@ spec:
           value: $(inputs.params.IMAGE):$(inputs.params.TAG)
       script: |
         pip install kfp==2.8.0
+        pip install kfp-kubernetes
         python $(inputs.params.SCRIPT)
