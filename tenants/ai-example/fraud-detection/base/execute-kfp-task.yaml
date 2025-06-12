@@ -17,7 +17,7 @@ spec:
       description: The location of the script to be executed
     - name: KUBEFLOW_ENDPOINT
       description: The endpoint URL for Kubeflow
-      default: "https://ds-pipeline-dspa:8443"
+      default: "http://ds-pipeline-dspa.fraud-detection.svc.cluster.local:8443"
   steps:
     - name: execute-python
       image: $(inputs.params.IMAGE):$(inputs.params.TAG)
@@ -27,6 +27,6 @@ spec:
         - name: BASE_IMAGE
           value: $(inputs.params.IMAGE):$(inputs.params.TAG)
       script: |
-        pip install kfp==2.8.0
-        pip install kfp-kubernetes
+        pip install -q kfp==2.8.0
+        pip install -q kfp-kubernetes
         python $(inputs.params.SCRIPT)
