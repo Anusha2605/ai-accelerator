@@ -27,5 +27,4 @@ spec:
         - name: BASE_IMAGE
           value: $(inputs.params.IMAGE):$(inputs.params.TAG)
       script: |
-        pip install -q kfp==2.8.0 kfp-kubernetes
-        python $(inputs.params.SCRIPT)
+        python -m pip install -q kfp==2.8.0 kfp-kubernetes && python $(inputs.params.SCRIPT)
