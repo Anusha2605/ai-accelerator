@@ -27,4 +27,5 @@ spec:
         - name: BASE_IMAGE
           value: $(inputs.params.IMAGE):$(inputs.params.TAG)
       script: |
+        pip install kfp==2.8.0
         python $(inputs.params.SCRIPT)
