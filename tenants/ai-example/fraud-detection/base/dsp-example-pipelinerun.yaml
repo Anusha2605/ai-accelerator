@@ -8,7 +8,7 @@ spec:
   pipelineRef:
     name: fraud-detection
   taskRunTemplate:
-    serviceAccountName: pipeline
+    serviceAccountName: ds-pipeline-dspa
   timeouts:
     pipeline: 1h0m0s
   workspaces:
