@@ -4,7 +4,7 @@ metadata:
   name: fraud-detection
 spec:
   params:
-    - default: 'https://github.com/rh-aiservices-bu/fraud-detection.git'
+    - default: 'https://github.com/Anusha2605/fraud-detection.git'
       description: Repo URL
       name: GIT_URL
       type: string
