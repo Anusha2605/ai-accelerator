@@ -21,3 +21,4 @@ components:
   - ../../components/components-modelregistry
   - ../../components/components-modelregistry-config
   - ../../components/enable-model-catalog
+  - ../../components/runtime-template-triton
