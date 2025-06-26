@@ -12,16 +12,16 @@ objects:
   - apiVersion: serving.kserve.io/v1alpha1
     kind: ServingRuntime
     metadata:
-      name: triton-24.01
+      name: triton-23.05
       labels:
-        name: triton-24.01
+        name: triton-23.05
       annotations:
         maxLoadingConcurrency: '2'
-        openshift.io/display-name: Triton runtime 24.01
+        openshift.io/display-name: Triton runtime 23.05
         enable-auth: 'false'
         enable-route: 'true'
-        opendatahub.io/template-display-name: Triton runtime 24.01
-        opendatahub.io/template-name: triton-24.01
+        opendatahub.io/template-display-name: Triton runtime 23.05
+        opendatahub.io/template-name: triton-23.05
         argocd.argoproj.io/sync-wave: "1"
         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     spec:
@@ -73,17 +73,13 @@ objects:
             sizeLimit: 2Gi
       containers:
         - name: triton
-          image: 'nvcr.io/nvidia/tritonserver:24.01-py3'
-          command:
-            - tritonserver
+          image: 'nvcr.io/nvidia/tritonserver:23.05-py3'
           args:
-            - --model-repository=/mnt/models/
-            - --model-control-mode=explicit
-            - --disable-auto-complete-config
-            - --strict-readiness=false
-            - --allow-http=true
-            - --allow-sagemaker=false
-            - --load-model=*
+            - '-c'
+            - 'exec tritonserver "--model-repository=/mnt/models/" "--load-model=*" "--model-control-mode=explicit" "--strict-readiness=false" "--allow-http=true" "--allow-sagemaker=false" "--allow-metrics=true" "--http-port=8080"'
+          command:
+            - /bin/sh
+
           volumeMounts:
             - name: shm
               mountPath: /dev/shm
