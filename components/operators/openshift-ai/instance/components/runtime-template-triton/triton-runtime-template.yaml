@@ -72,7 +72,7 @@ objects:
             medium: Memory
             sizeLimit: 2Gi
       containers:
-        - name: kserve-container
+        - name: triton
           image: 'nvcr.io/nvidia/tritonserver:24.07-py3'
           args:
             - '-c'
