@@ -4,6 +4,7 @@ labels:
   opendatahub.io/dashboard: "true"
 metadata:
   name: triton
+  namespace: demo
   labels:
     name: triton
   annotations:
