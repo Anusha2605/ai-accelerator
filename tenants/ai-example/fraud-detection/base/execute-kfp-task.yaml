@@ -17,7 +17,7 @@ spec:
       description: The location of the script to be executed
     - name: KUBEFLOW_ENDPOINT
       description: The endpoint URL for Kubeflow
-      default: "http://ds-pipeline-dspa.fraud-detection.svc.cluster.local:8443"
+      default: "http://ds-pipeline-dspa.demo.svc.cluster.local:8443"
   steps:
     - name: execute-python
       image: $(inputs.params.IMAGE):$(inputs.params.TAG)

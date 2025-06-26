@@ -21,7 +21,7 @@ spec:
     - default: 'image-registry.openshift-image-registry.svc:5000/fraud-detection/fraud-detection'
       name: TARGET_IMAGE
       type: string
-    - default: 'http://ds-pipeline-dspa.fraud-detection.svc.cluster.local:8443'
+    - default: 'http://ds-pipeline-dspa.demo.svc.cluster.local:8443'
       name: KUBEFLOW_ENDPOINT
       type: string
   tasks:
