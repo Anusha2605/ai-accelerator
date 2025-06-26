@@ -71,6 +71,8 @@ objects:
           emptyDir:
             medium: Memory
             sizeLimit: 2Gi
+        - name: local-model-repo
+          emptyDir: {}
       containers:
         - name: triton
           image: 'nvcr.io/nvidia/tritonserver:24.07-py3'
@@ -83,6 +85,8 @@ objects:
           volumeMounts:
             - name: shm
               mountPath: /dev/shm
+            - name: local-model-repo
+              mountPath: /mnt/models/
           resources:
             requests:
               cpu: 500m
