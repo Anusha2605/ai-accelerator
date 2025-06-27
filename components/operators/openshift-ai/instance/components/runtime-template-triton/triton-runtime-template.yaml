@@ -84,7 +84,7 @@ objects:
             - --strict-readiness=false
             - --allow-http=true
             - --allow-sagemaker=false
-            - --load-model=fraud
+#            - --load-model=fraud
             - --allow-metrics=false
           volumeMounts:
             - name: shm
