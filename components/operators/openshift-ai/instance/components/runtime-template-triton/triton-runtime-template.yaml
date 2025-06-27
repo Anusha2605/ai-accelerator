@@ -80,11 +80,11 @@ objects:
             - tritonserver
           args:
             - --model-repository=/mnt/models/
-#            - --model-control-mode=implicit
+            - --model-control-mode=explicit
             - --strict-readiness=false
             - --allow-http=true
             - --allow-sagemaker=false
-#            - --load-model=fraud
+            - --load-model=fraud
             - --allow-metrics=false
           volumeMounts:
             - name: shm
