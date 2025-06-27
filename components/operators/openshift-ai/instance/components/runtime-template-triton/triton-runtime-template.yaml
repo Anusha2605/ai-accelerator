@@ -80,7 +80,7 @@ objects:
             - tritonserver
           args:
             - --model-repository=/mnt/models/
-            - --model-control-mode=implicit
+#            - --model-control-mode=implicit
             - --strict-readiness=false
             - --allow-http=true
             - --allow-sagemaker=false
