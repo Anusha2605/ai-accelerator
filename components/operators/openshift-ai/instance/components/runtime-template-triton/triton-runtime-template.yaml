@@ -76,12 +76,15 @@ objects:
       containers:
         - name: triton
           image: 'nvcr.io/nvidia/tritonserver:24.07-py3'
-          args:
-            - '-c'
-            - 'exec tritonserver "--model-repository=/mnt/models/" "--load-model=models/fraud" "--model-control-mode=explicit" "--strict-readiness=false" "--allow-http=true" "--allow-sagemaker=false" "--allow-metrics=true" "--http-port=8080"'
           command:
-            - /bin/sh
-
+            - tritonserver
+          args:
+            - --model-repository=/mnt/models/
+            - --model-control-mode=explicit
+            - --strict-readiness=false
+            - --allow-http=true
+            - --allow-sagemaker=false
+            - --load-model=*
           volumeMounts:
             - name: shm
               mountPath: /dev/shm
