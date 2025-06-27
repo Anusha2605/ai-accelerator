@@ -78,7 +78,7 @@ objects:
           image: 'nvcr.io/nvidia/tritonserver:24.07-py3'
           args:
             - '-c'
-            - 'exec tritonserver "--model-repository=/mnt/models/" "--load-model=*" "--model-control-mode=explicit" "--strict-readiness=false" "--allow-http=true" "--allow-sagemaker=false" "--allow-metrics=true" "--http-port=8080"'
+            - 'exec tritonserver "--model-repository=/mnt/models/" "--load-model=fraud" "--model-control-mode=explicit" "--strict-readiness=false" "--allow-http=true" "--allow-sagemaker=false" "--allow-metrics=true" "--http-port=8080"'
           command:
             - /bin/sh
 
