@@ -84,7 +84,8 @@ objects:
             - --strict-readiness=false
             - --allow-http=true
             - --allow-sagemaker=false
-            - --load-model=*
+            - --load-model=fraud
+            - --allow-metrics=false
           volumeMounts:
             - name: shm
               mountPath: /dev/shm
