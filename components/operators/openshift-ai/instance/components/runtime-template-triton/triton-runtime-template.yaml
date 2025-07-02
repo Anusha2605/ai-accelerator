@@ -7,7 +7,7 @@ metadata:
     opendatahub.io/dashboard: 'true'
   annotations:
     opendatahub.io/apiProtocol: REST
-    opendatahub.io/modelServingSupport: '["multi"]'
+    opendatahub.io/modelServingSupport: '["single"]'
 objects:
   - apiVersion: serving.kserve.io/v1alpha1
     kind: ServingRuntime
@@ -63,7 +63,7 @@ objects:
       protocolVersions:
         - grpc-v2
         - v2
-      multiModel: true
+      multiModel: false
       grpcEndpoint: 'port:8085'
       grpcDataEndpoint: 'port:8001'
       volumes:
@@ -84,7 +84,7 @@ objects:
             - --strict-readiness=false
             - --allow-http=true
             - --allow-sagemaker=false
-            - --load-model=fraud
+            - --load-model=*
             - --allow-metrics=false
           volumeMounts:
             - name: shm
