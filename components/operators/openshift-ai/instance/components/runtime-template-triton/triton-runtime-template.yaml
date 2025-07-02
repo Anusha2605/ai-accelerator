@@ -1,118 +1,115 @@
-kind: Template
 apiVersion: template.openshift.io/v1
+kind: Template
 metadata:
-  name: trition-serving-runtime
-  namespace: redhat-ods-applications
-  labels:
-    opendatahub.io/dashboard: 'true'
   annotations:
     opendatahub.io/apiProtocol: REST
     opendatahub.io/modelServingSupport: '["single"]'
+  labels:
+    opendatahub.io/dashboard: "true"
+  name: triton-serving-runtime
+  namespace: redhat-ods-applications
 objects:
-  - apiVersion: serving.kserve.io/v1alpha1
-    kind: ServingRuntime
-    metadata:
+- apiVersion: serving.kserve.io/v1alpha1
+  kind: ServingRuntime
+  metadata:
+    annotations:
+      enable-auth: "true"
+      enable-route: "true"
+      maxLoadingConcurrency: "2"
+      opendatahub.io/template-display-name: Triton runtime 24.07
+      opendatahub.io/template-name: triton-24.07
+      openshift.io/display-name: Triton runtime 24.07
+      argocd.argoproj.io/sync-wave: "1"
+      argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    labels:
       name: triton-24.07
-      labels:
-        name: triton-24.07
-      annotations:
-        maxLoadingConcurrency: '2'
-        openshift.io/display-name: Triton runtime 24.07
-        enable-auth: 'false'
-        enable-route: 'true'
-        opendatahub.io/template-display-name: Triton runtime 24.07
-        opendatahub.io/template-name: triton-24.07
-        argocd.argoproj.io/sync-wave: "1"
-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    spec:
-      annotations:
-        prometheus.io/port: '8002'
-        prometheus.io/path: "/metrics"
-        serving.knative.openshift.io/enablePassthrough: "true"
-        prometheus.io/scrape: 'true'
-        sidecar.istio.io/inject: "true"
-        sidecar.istio.io/rewriteAppHTTPProbers: "true"
-      supportedModelFormats:
-        - name: keras
-          version: "2"
-          autoSelect: true
-        - name: onnx
-          version: "1"
-          autoSelect: true
-        - name: pytorch
-          version: "1"
-          autoSelect: true
-        - name: tensorflow
-          version: "1"
-          autoSelect: true
-        - name: python
-          version: "1"
-          autoSelect: true
-        - name: tensorrt
-          version: "7"
-          autoSelect: true
-        - name: bls
-          version: "1"
-          autoSelect: true
-        - name: ensemble
-          version: "1"
-          autoSelect: true
-        - name: fil
-          version: "1"
-          autoSelect: true
-      protocolVersions:
-        - grpc-v2
-        - v2
-      multiModel: false
-      grpcEndpoint: 'port:8085'
-      grpcDataEndpoint: 'port:8001'
-      volumes:
-        - name: shm
-          emptyDir:
-            medium: Memory
-            sizeLimit: 2Gi
-        - name: local-model-repo
-          emptyDir: {}
-      containers:
-        - name: triton
-          image: 'nvcr.io/nvidia/tritonserver:24.07-py3'
+      opendatahub.io/configurable: "true"
+      opendatahub.io/dashboard: "true"
+    name: triton-24.07
+  spec:
+    annotations:
+      prometheus.io/path: /metrics
+      prometheus.io/port: "8002"
+      prometheus.io/scrape: "true"
+      serving.knative.openshift.io/enablePassthrough: "true"
+      sidecar.istio.io/inject: "true"
+      sidecar.istio.io/rewriteAppHTTPProbers: "true"
+    builtInAdapter:
+      memBufferBytes: 134217728
+      modelLoadingTimeoutMillis: 90000
+      runtimeManagementPort: 8001
+      serverType: triton
+    containers:
+    - args:
+      - --model-repository=/mnt/models/
+      - --model-control-mode=explicit
+      - --strict-readiness=false
+      - --allow-http=true
+      - --allow-sagemaker=false
+      - --load-model=*
+      - --allow-metrics=true
+      command:
+      - tritonserver
+      image: nvcr.io/nvidia/tritonserver:24.07-py3
+      livenessProbe:
+        exec:
           command:
-            - tritonserver
-          args:
-            - --model-repository=/mnt/models/
-            - --model-control-mode=explicit
-            - --strict-readiness=false
-            - --allow-http=true
-            - --allow-sagemaker=false
-            - --load-model=*
-            - --allow-metrics=false
-          volumeMounts:
-            - name: shm
-              mountPath: /dev/shm
-            - name: local-model-repo
-              mountPath: /mnt/models/
-          resources:
-            requests:
-              cpu: 500m
-              memory: 1Gi
-            limits:
-              cpu: '5'
-              memory: 1Gi
-          livenessProbe:
-            exec:
-              command:
-                - curl
-                - '--fail'
-                - '--silent'
-                - '--show-error'
-                - '--max-time'
-                - '9'
-                - 'http://localhost:8000/v2/health/live'
-            initialDelaySeconds: 5
-            periodSeconds: 30
-            timeoutSeconds: 10
-      builtInAdapter:
-        serverType: triton
-        runtimeManagementPort: 8001
-        memBufferBytes: 134217728
-        modelLoadingTimeoutMillis: 90000
+          - curl
+          - --fail
+          - --silent
+          - --show-error
+          - --max-time
+          - "9"
+          - http://localhost:8000/v2/health/live
+        initialDelaySeconds: 5
+        periodSeconds: 30
+        timeoutSeconds: 10
+      name: kserve-container
+      ports:
+      - containerPort: 8000
+        name: http1
+        protocol: TCP
+      resources:
+        limits:
+          cpu: "5"
+          memory: 4Gi
+        requests:
+          cpu: 500m
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /mnt/models/
+        name: local-model-repo
+    multiModel: false
+    protocolVersions:
+    - grpc-v2
+    supportedModelFormats:
+    - autoSelect: true
+      name: keras
+      version: "2"
+    - autoSelect: true
+      name: onnx
+      version: "1"
+    - autoSelect: true
+      name: pytorch
+      version: "1"
+    - autoSelect: true
+      name: tensorflow
+      version: "1"
+    - autoSelect: true
+      name: python
+      version: "1"
+    - autoSelect: true
+      name: tensorrt
+      version: "7"
+    - autoSelect: true
+      name: bls
+      version: "1"
+    - autoSelect: true
+      name: ensemble
+      version: "1"
+    - autoSelect: true
+      name: fil
+      version: "1"
+    volumes:
+    - emptyDir: {}
+      name: local-model-repo
