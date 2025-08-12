@@ -49,7 +49,7 @@ Execute the bootstrap script to begin the installation process:
 ```sh
 ./bootstrap.sh
 ```
-The script defaults to using the central repository at `(https://github.com/redhat-ai-services/ai-accelerator.git)` and the main branch for GitOps configuration. If your working remote repository differs, the script will prompt you to update the GitOps configuration to match. Selecting this option will:
+The script defaults to using the central repository at `(https://github.com/Anusha2605/ai-accelerator.git)` and the main branch for GitOps configuration. If your working remote repository differs, the script will prompt you to update the GitOps configuration to match. Selecting this option will:
 
 - Update the repository and branch in `cluster-config-app-of-apps`.
 - Commit the changes locally.
