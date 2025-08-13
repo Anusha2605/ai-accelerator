@@ -4,7 +4,7 @@ metadata:
   name: pipelines-fd-access
 subjects:
   - kind: ServiceAccount
-    name: pipelines
+    name: ds-pipeline-dspa
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
