@@ -6,7 +6,7 @@ spec:
   vgpuDeviceManager:
     enabled: true
   migManager:
-    enabled: true
+    enabled: false
   operator:
     defaultRuntime: crio
     initContainer: {}
