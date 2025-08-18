@@ -20,5 +20,5 @@ components:
   - ../../components/model-server-pod-sizes
   - ../../components/rhoai-auth
   - ../../components/components-modelregistry
-  #- ../../components/components-modelregistry-config
-  #- ../../components/dashboard-feature-model-catalog
+  - ../../components/components-modelregistry-config
+  - ../../components/dashboard-feature-model-catalog
