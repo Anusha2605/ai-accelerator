@@ -7,5 +7,5 @@ resources:
   - cluster-policy.yaml
   - device-plugin-config.yaml
 
-components:
-  - ../components/monitoring-dashboard
+#components:
+#  - ../components/monitoring-dashboard

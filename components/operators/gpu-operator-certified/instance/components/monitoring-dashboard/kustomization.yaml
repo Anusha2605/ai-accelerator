@@ -3,7 +3,7 @@ kind: Component
 
 generatorOptions:
   labels:
-    console.openshift.io/dashboard: "true"
+    console.openshift.io/monitoring-dashboard: "true"
     # optional label to enable visibilty in developer perspective
     console.openshift.io/odc-dashboard: "true"
   disableNameSuffixHash: true
