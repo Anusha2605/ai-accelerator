@@ -15,13 +15,13 @@ spec:
     - default: main
       name: GIT_REVISION
       type: string
-    - default: 3.12-ubi9
+    - default: 3.11-ubi9
       name: PYTHON_IMAGE
       type: string
     - default: 'image-registry.openshift-image-registry.svc:5000/fraud-detection/fraud-detection'
       name: TARGET_IMAGE
       type: string
-    - default: 'ds-pipeline-dspa.outerloop.svc.cluster.local:8443'
+    - default: 'https://ds-pipeline-dspa.fraud-detection.svc.cluster.local:8443'
       name: KUBEFLOW_ENDPOINT
       type: string
   tasks:
