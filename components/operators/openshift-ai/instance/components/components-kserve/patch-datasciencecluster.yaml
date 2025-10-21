@@ -5,8 +5,15 @@ metadata:
 spec:
   components:
     kserve:
+      defaultDeploymentMode: RawDeployment
       managementState: Managed
-      defaultDeploymentMode: Serverless
-      serving:
+      nim:
         managementState: Managed
+      rawDeploymentServiceConfig: Headed
+      serving:
+        ingressGateway:
+          certificate:
+            type: OpenshiftDefaultIngress
+        managementState: Removed
         name: knative-serving
+
