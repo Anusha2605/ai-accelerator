@@ -4,4 +4,4 @@ metadata:
   name: odh-dashboard-config
 spec:
   dashboardConfig:
-    disableHardwareProfiles: false
+    disableModelCatalog: false
