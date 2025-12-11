@@ -9,8 +9,8 @@ spec:
       - cluster: local
         url: https://kubernetes.default.svc
         values:
-          name: authorino-operator
-          path: components/operators/authorino-operator/operator/overlays/stable
+          name: kuadrant-operator
+          path: components/operators/kuadrant-operator/operator/overlays/stable
       - cluster: local
         url: https://kubernetes.default.svc
         values:
@@ -36,16 +36,16 @@ spec:
         values:
           name: openshift-pipelines-operator
           path: components/operators/openshift-pipelines/operator/overlays/latest
-      - cluster: local
-        url: https://kubernetes.default.svc
-        values:
-          name: openshift-serverless-operator
-          path: components/operators/openshift-serverless/operator/overlays/stable
-      - cluster: local
-        url: https://kubernetes.default.svc
-        values:
-          name: openshift-servicemesh-operator
-          path: components/operators/openshift-servicemesh/operator/overlays/stable
+      #- cluster: local
+      #  url: https://kubernetes.default.svc
+      #  values:
+      #    name: openshift-serverless-operator
+      #    path: components/operators/openshift-serverless/operator/overlays/stable
+      #- cluster: local
+      #  url: https://kubernetes.default.svc
+      #  values:
+      #    name: openshift-servicemesh-operator
+      #    path: components/operators/openshift-servicemesh/operator/overlays/stable
 
       # - cluster: local
       #   url: https://kubernetes.default.svc
